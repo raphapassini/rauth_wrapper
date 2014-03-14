@@ -7,7 +7,9 @@ Hot to install
 ===============
 
 ```
-git clone git@github.com:raphapassini/rauth-wrapper.git
+git clone git@github.com:raphapassini/rauth_wrapper.git
+cd /path/to/rauth_wrapper
+pip install -r requirements.txt
 ```
 
 How to use it
