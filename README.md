@@ -36,17 +36,17 @@ FB_CLIENT_SECRET = '5678'
 FB_REDIRECT_URI = 'http://localhost/authorize/'
 
 
-def connect(self):
+def connect(request):
   """this function is called when user click to sigin with facebook"""
   facebook = FacebookConnect(FB_CLIENT_ID, FB_CLIENT_SECRET)
   auth_url = facebook.get_authorize_url(redirect_uri=FB_REDIRECT_URI)
   redirect(auth_url)
   
   
-def authorize(self):
+def authorize(request):
   """this function is called when user hits FB_REDIRECT_URL"""
   try:
-    code = self.request.GET['code']
+    code = request.GET['code']
   except:
     raise Exception("Can't get code from url")
   
@@ -68,17 +68,17 @@ G_CLIENT_SECRET = '5678'
 G_REDIRECT_URI = 'http://localhost/authorize/'
 
 
-def connect(self):
+def connect(request):
   """this function is called when user click to sigin with google+"""
   google = GooglePlusConnect(G_CLIENT_ID, G_CLIENT_SECRET)
   auth_url = google.get_authorize_url(redirect_uri=G_REDIRECT_URI)
   redirect(auth_url)
   
   
-def authorize(self):
+def authorize(request):
   """this function is called when user hits G_REDIRECT_URI"""
   try:
-    code = self.request.GET['code']
+    code = request.GET['code']
   except:
     raise Exception("Can't get code from url")
   
@@ -98,17 +98,17 @@ from rauth_wrapper.oauth_manager import TwitterConnect
 CONSUMER_KEY = '1234'
 CONSUMER_SECRET = '5678'
 
-def connect(self):
+def connect(request):
   """this function is called when user click to sigin with twitter"""
   twitter = TwitterConnect(CONSUMER_KEY, CONSUMER_SECRET)
   auth_url = twitter.get_request_token().get_authorize_url()
   redirect(auth_url)
   
   
-def authorize(self):
+def authorize(request):
   """this function is called when user hits twitter callback url"""
   try:
-    oauth_verifier = self.request.GET['oauth_verifier']
+    oauth_verifier = request.GET['oauth_verifier']
   except:
     raise Exception("Can't get oauth_verifier from url")
   
